@@ -1,0 +1,20 @@
+<nav class="bg-white border-b border-gray-200 px-4 py-3 flex justify-between items-center">
+  <div class="text-xl font-semibold text-gray-800">
+    <%= link_to "📚 Book Review Demo", root_path, class: "hover:text-blue-600 transition" %>
+  </div>
+
+  <div class="flex items-center space-x-4">
+    <% if user_signed_in? %>
+      <span class="text-gray-700">Signed in as <%= current_user.email %></span>
+      <%= button_to "Logout", destroy_user_session_path,
+            method: :delete,
+            form: { data: { turbo: false } },
+            class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path,
+            class: "text-blue-600 hover:underline" %>
+      <%= link_to "Register", new_user_registration_path,
+            class: "text-blue-600 hover:underline" %>
+    <% end %>
+  </div>
+</nav>

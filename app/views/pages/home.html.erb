@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to Book Review Demo</h1>
+  <p class="text-lg text-gray-600 mb-6">
+    Discover new books, share your thoughts, and read reviews from fellow book lovers.
+  </p>
+  <% if user_signed_in? %>
+    <%= link_to "Start Reviewing",
+          books_path,
+          class: "bg-blue-600 text-white px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition" %>
+  <% else %>
+    <%= link_to "Register Now",
+          new_user_registration_path,
+          class: "bg-blue-600 text-white px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition" %>
+  <% end %>
+</div>

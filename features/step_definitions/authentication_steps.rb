@@ -45,8 +45,16 @@ Then("I should be signed in") do
   expect(page).to have_content("Signed in as")
 end
 
+Then("I should not be signed in") do
+  expect(page).not_to have_content("Signed in as")
+end
+
 Then("I should see {string} in the navigation bar") do |text|
   within("nav") { expect(page).to have_content(text) }
+end
+
+Then("I should not see {string} in the navigation bar") do |text|
+  within("nav") { expect(page).not_to have_content(text) }
 end
 
 Then("I should see {string} and {string} links in the navigation bar") do |login, register|
@@ -54,10 +62,6 @@ Then("I should see {string} and {string} links in the navigation bar") do |login
     expect(page).to have_link(login)
     expect(page).to have_link(register)
   end
-end
-
-Then("I should not see {string}") do |text|
-  expect(page).not_to have_content(text)
 end
 
 Then("I should be on the registration page") do

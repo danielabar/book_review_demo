@@ -18,8 +18,33 @@ Feature: User authentication
     And I should see "Signed in as user@example.com" in the navigation bar
     And I should see a "Logout" button
 
+  Scenario: Failed login with incorrect password
+    Given a user exists with email "user@example.com" and password "password"
+    When I visit the login page
+    And I fill in "Email" with "user@example.com"
+    And I fill in "Password" with "wrongpassword"
+    And I click "Log in"
+    Then I should see "Invalid Email or password"
+    And I should not be signed in
+
+  Scenario: Failed login with non-existent email
+    Given I am not signed in
+    When I visit the login page
+    And I fill in "Email" with "nonexistent@example.com"
+    And I fill in "Password" with "anypassword"
+    And I click "Log in"
+    Then I should see "Invalid Email or password"
+    And I should not be signed in
+
+  Scenario: Failed login with empty credentials
+    Given I am not signed in
+    When I visit the login page
+    And I click "Log in"
+    Then I should see "Invalid Email or password"
+    And I should not be signed in
+
   Scenario: Navigation bar for guest
     Given I am not signed in
     When I visit the home page
     Then I should see "Login" and "Register" links in the navigation bar
-    And I should not see "Signed in as"
+    And I should not be signed in

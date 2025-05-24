@@ -38,10 +38,11 @@ Feature: Book reviews
   Scenario: User edits their review
     Given I have left a review for "Book One" with rating 3 and body "It was ok."
     When I visit the book show page for "Book One"
+    Then I should see 3 stars for my review
     And I update my review body to "Actually, I loved it!" and rating to 5
     And I click "Update Review"
     Then I should see "Review was successfully updated."
-    And I should see "Actually, I loved it!" in the reviews list
+    And I should see "Actually, I loved it!" in my review
     And I should see 5 stars for my review
 
   Scenario: User deletes their review

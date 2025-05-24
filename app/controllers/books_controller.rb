@@ -9,6 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    # FIXME: Not all of these instance vars are actually needed in the books show view
     @book = Book.find(params[:id])
     @user_review = @book.reviews.find_by(user: current_user)
     @review = @user_review || @book.reviews.new

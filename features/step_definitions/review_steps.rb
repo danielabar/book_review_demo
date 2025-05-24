@@ -52,18 +52,6 @@ Then("I should see {int} stars for my review") do |count|
   expect(my_review.find('[data-testid="review-rating"]').all('svg').size).to eq(count)
 end
 
-Then("my review should appear at the top of the reviews list") do
-  within(:xpath, "//ul/li[1]") do
-    expect(page).to have_content("You")
-  end
-end
-
-Then("my review should display {string} instead of my email") do |text|
-  within(:xpath, "//ul/li[1]") do
-    expect(page).to have_content(text)
-  end
-end
-
 Then("I should see the book title, author, and published year for {string}") do |title|
   book = Book.find_by(title: title)
   within("##{dom_id(book)}") do
@@ -71,12 +59,6 @@ Then("I should see the book title, author, and published year for {string}") do 
     expect(page).to have_content(book.author)
     expect(page).to have_content(book.published_year)
   end
-end
-
-# Unused?
-Then("I should see {string} by {string}") do |body, email|
-  expect(page).to have_content(body)
-  expect(page).to have_content(email)
 end
 
 Then("I should see {int} stars for {string}'s review") do |count, email|

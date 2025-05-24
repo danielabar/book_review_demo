@@ -21,12 +21,6 @@ Then("I should be on the book show page for {string}") do |book_title|
   expect(current_path).to eq(book_path(book))
 end
 
-Then("I should see {string} with author {string} and published year {string}") do |title, author, year|
-  expect(page).to have_content(title)
-  expect(page).to have_content(author)
-  expect(page).to have_content(year)
-end
-
 # Each row is a hash like: {"Title" => "Book One", "Author" => "Author A", "Published Year" => "2001", "Review Count" => "2 reviews"}
 Then("I should see the following books:") do |table|
   table.hashes.each do |row|

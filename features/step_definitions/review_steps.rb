@@ -61,12 +61,6 @@ Then("I should see the book title, author, and published year for {string}") do 
   end
 end
 
-Then("I should see {int} stars for {string}'s review") do |count, email|
-  within(:xpath, "//li[contains(., '#{email}')]") do
-    expect(page).to have_css("svg", count: count)
-  end
-end
-
 Then("I should see \"You\" at the top of the reviews list") do
   first_item = all('[data-testid="review-item"]').first
   author = first_item.find('[data-testid="review-author"]').text

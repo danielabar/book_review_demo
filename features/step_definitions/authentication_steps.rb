@@ -6,11 +6,6 @@ Given("I am signed in as {string}") do |email|
   login_as(user, scope: :user)
 end
 
-# Given("I am signed in as a user") do
-#   user = FactoryBot.create(:user)
-#   login_as(user, scope: :user)
-# end
-
 Given("a user exists with email {string} and password {string}") do |email, password|
   FactoryBot.create(:user, email: email, password: password)
 end

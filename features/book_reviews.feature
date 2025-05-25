@@ -27,8 +27,12 @@ Feature: Book reviews
 
   Scenario: User adds a review
     When I visit the book show page for "Book One"
-    And I fill in "Your Review" with "Amazing!"
-    And I select "5" for "Rating"
+    And I enter a review with body "" and rating 5
+    And I click "Submit Review"
+    Then I should see the following form validation messages:
+      | There were some problems with your submission: |
+      | Body can't be blank                            |
+    And I enter a review with body "Amazing!" and rating 5
     And I click "Submit Review"
     Then I should see "Review was successfully created."
     And I should see "You" at the top of the reviews list
@@ -39,7 +43,12 @@ Feature: Book reviews
     Given I have left a review for "Book One" with rating 3 and body "It was ok."
     When I visit the book show page for "Book One"
     Then I should see 3 stars for my review
-    And I update my review body to "Actually, I loved it!" and rating to 5
+    And I enter a review with body "" and rating 3
+    And I click "Update Review"
+    Then I should see the following form validation messages:
+      | There were some problems with your submission: |
+      | Body can't be blank                            |
+    And I enter a review with body "Actually, I loved it!" and rating 5
     And I click "Update Review"
     Then I should see "Review was successfully updated."
     And I should see "Actually, I loved it!" in my review

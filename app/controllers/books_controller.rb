@@ -10,11 +10,9 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @user_review = @book.reviews.find_by(user: current_user)
-    @review = @user_review || @book.reviews.new
-    @other_reviews = @book.reviews.includes(:user).where.not(user: current_user).order(created_at: :desc)
-    @reviews_to_show = []
-    @reviews_to_show << @user_review if @user_review
-    @reviews_to_show += @other_reviews.to_a if @other_reviews
+    context = BookShowContextBuilder.new(book: @book, user: current_user)
+    @user_review = context.user_review
+    @review = context.review
+    @reviews_to_show = context.reviews_to_show
   end
 end

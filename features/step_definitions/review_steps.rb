@@ -17,7 +17,7 @@ When("I visit the book show page for {string}") do |book_title|
   visit book_path(book)
 end
 
-When("I update my review body to {string} and rating to {int}") do |body, rating|
+When("I enter a review with body {string} and rating {int}") do |body, rating|
   fill_in "Your Review", with: body
   select rating.to_s, from: "Rating (1-5)"
 end
@@ -61,12 +61,6 @@ Then("I should see the book title, author, and published year for {string}") do 
   end
 end
 
-Then("I should see {int} stars for {string}'s review") do |count, email|
-  within(:xpath, "//li[contains(., '#{email}')]") do
-    expect(page).to have_css("svg", count: count)
-  end
-end
-
 Then("I should see \"You\" at the top of the reviews list") do
   first_item = all('[data-testid="review-item"]').first
   author = first_item.find('[data-testid="review-author"]').text
@@ -97,20 +91,3 @@ end
 Then("I should see a submit review button") do
   expect(page).to have_button("Submit Review")
 end
-
-Given('users exist:') do |table|
-  table.hashes.each do |row|
-    FactoryBot.create(:user, email: row['Email'], password: row['Password'])
-  end
-end
-
-When('I select {string} for {string}') do |value, field|
-  select value, from: field
-end
-
-# Then("I should see the review for {string} with body {string}") do |email, body|
-#   within('[data-testid="reviews-list"]') do
-#     expect(page).to have_content(email)
-#     expect(page).to have_content(body)
-#   end
-# end

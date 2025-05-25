@@ -10,6 +10,10 @@
   - [4. Run Feature Tests](#4-run-feature-tests)
   - [References](#references)
   - [Agentic](#agentic)
+  - [Brainstorming](#brainstorming)
+    - [WIP Review Management Edge Cases](#wip-review-management-edge-cases)
+    - [User Permissions/Authorization](#user-permissionsauthorization)
+    - [Navigation](#navigation)
 
 # Cucumber Setup
 
@@ -129,3 +133,22 @@ Here is what can be done with this app:
 * also on the book show view, if the logged in user has already left a review, they can delete it - this will have a js "are you sure" alert, if they click OK on that, then book is deleted, they will be redirected to book show view with a deleted flash message and their review is no longer in the list of reviews, at this point the form is in the "new" version and they can add their own review
 * if a user is logged in, then the top navigation bar shows "Signed in as youremail" and they see a logout button
 * if a user is not logged in, then the top navigation bar shows Login and Register links and does not show the "Signed in as..." message
+
+## Brainstorming
+
+### WIP Review Management Edge Cases
+- Attempt to submit a second review for the same book (UI doesn't even allow this, maybe belongs as model test)
+- Navigating away from review form and returning (data preservation)
+- Review with very long content
+- Malicious content in review body (XSS testing)
+
+### User Permissions/Authorization
+- Ensuring users can only edit/delete their own reviews
+- Attempting to edit other users' reviews (should be prevented)
+- Attempting to access protected routes without authentication
+- Proper redirection to login when accessing protected content
+
+### Navigation
+- Complete user journey across the entire application
+- Navigation between different sections retains correct state
+- Back button behavior in critical workflows

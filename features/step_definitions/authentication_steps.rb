@@ -1,18 +1,19 @@
+# This step uses FactoryBot to create a user and Warden's test helpers to sign them in directly.
+# This avoids navigating to the login or registration page and filling in forms, which is much slower.
+# Using Warden's test mode is the recommended approach for feature specs that require a signed-in user.
 Given("I am signed in as {string}") do |email|
   user = User.find_by(email: email) || FactoryBot.create(:user, email: email)
   login_as(user, scope: :user)
 end
 
-# This step uses FactoryBot to create a user and Warden's test helpers to sign them in directly.
-# This avoids navigating to the login or registration page and filling in forms, which is much slower.
-# Using Warden's test mode is the recommended approach for feature specs that require a signed-in user.
-Given("I am signed in as a user") do
-  user = FactoryBot.create(:user)
-  login_as(user, scope: :user)
-end
-
 Given("a user exists with email {string} and password {string}") do |email, password|
   FactoryBot.create(:user, email: email, password: password)
+end
+
+Given('users exist:') do |table|
+  table.hashes.each do |row|
+    FactoryBot.create(:user, email: row['Email'], password: row['Password'])
+  end
 end
 
 Given("I am not signed in") do
@@ -45,8 +46,16 @@ Then("I should be signed in") do
   expect(page).to have_content("Signed in as")
 end
 
+Then("I should not be signed in") do
+  expect(page).not_to have_content("Signed in as")
+end
+
 Then("I should see {string} in the navigation bar") do |text|
   within("nav") { expect(page).to have_content(text) }
+end
+
+Then("I should not see {string} in the navigation bar") do |text|
+  within("nav") { expect(page).not_to have_content(text) }
 end
 
 Then("I should see {string} and {string} links in the navigation bar") do |login, register|
@@ -54,10 +63,6 @@ Then("I should see {string} and {string} links in the navigation bar") do |login
     expect(page).to have_link(login)
     expect(page).to have_link(register)
   end
-end
-
-Then("I should not see {string}") do |text|
-  expect(page).not_to have_content(text)
 end
 
 Then("I should be on the registration page") do

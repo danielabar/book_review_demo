@@ -48,3 +48,18 @@ Feature: User authentication
     When I visit the home page
     Then I should see "Login" and "Register" links in the navigation bar
     And I should not be signed in
+
+  Scenario: User logs out and is redirected to home page
+    Given a user exists with email "user@example.com" and password "password"
+    And I visit the login page
+    And I fill in "Email" with "user@example.com"
+    And I fill in "Password" with "password"
+    And I click "Log in"
+    Then I should be signed in
+    When I click "Logout"
+    Then I should be on the home page
+    And I should see "Login" and "Register" links in the navigation bar
+    And I should not see "Signed in as" in the navigation bar
+    And I should not be signed in
+    When I visit the books index page
+    Then I should see "You need to sign in or sign up before continuing."

@@ -14,7 +14,6 @@
     - [WIP Review Management Edge Cases](#wip-review-management-edge-cases)
     - [User Permissions/Authorization](#user-permissionsauthorization)
     - [Navigation](#navigation)
-    - [Logout Functionality](#logout-functionality)
 
 # Cucumber Setup
 
@@ -153,9 +152,3 @@ Here is what can be done with this app:
 - Complete user journey across the entire application
 - Navigation between different sections retains correct state
 - Back button behavior in critical workflows
-
-### Logout Functionality
-- User logs out and is properly redirected to home page
-- After logout, protected content is no longer accessible
-- User session is properly terminated
-- Revisiting the site after logout requires new authentication

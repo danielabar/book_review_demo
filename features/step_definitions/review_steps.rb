@@ -91,20 +91,3 @@ end
 Then("I should see a submit review button") do
   expect(page).to have_button("Submit Review")
 end
-
-Given('users exist:') do |table|
-  table.hashes.each do |row|
-    FactoryBot.create(:user, email: row['Email'], password: row['Password'])
-  end
-end
-
-When('I select {string} for {string}') do |value, field|
-  select value, from: field
-end
-
-# Then("I should see the review for {string} with body {string}") do |email, body|
-#   within('[data-testid="reviews-list"]') do
-#     expect(page).to have_content(email)
-#     expect(page).to have_content(body)
-#   end
-# end

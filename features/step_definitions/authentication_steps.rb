@@ -10,6 +10,12 @@ Given("a user exists with email {string} and password {string}") do |email, pass
   FactoryBot.create(:user, email: email, password: password)
 end
 
+Given('users exist:') do |table|
+  table.hashes.each do |row|
+    FactoryBot.create(:user, email: row['Email'], password: row['Password'])
+  end
+end
+
 Given("I am not signed in") do
   logout(:user) if defined?(logout)
 end

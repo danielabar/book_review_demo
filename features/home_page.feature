@@ -9,7 +9,7 @@ Feature: Home page
     Then I should be on the registration page
 
   Scenario: Signed-in user sees welcome message and start reviewing button
-    Given I am signed in as a user
+    Given I am signed in as "user1@example.com"
     When I visit the home page
     Then I should see "Welcome to Book Review Demo"
     And I should see a "Start Reviewing" link

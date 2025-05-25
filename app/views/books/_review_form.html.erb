@@ -1,3 +1,4 @@
+<%# locals: (book:, review:, user_review:) %>
 <h2 class="text-2xl font-semibold mb-4"><%= user_review ? 'Edit Your Review' : 'Add a Review' %></h2>
 
 <%= form_with(model: [book, review], url: user_review ? book_review_path(book, user_review) : book_reviews_path(book), method: user_review ? :patch : :post, local: true) do |form| %>

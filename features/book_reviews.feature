@@ -39,6 +39,10 @@ Feature: Book reviews
     Given I have left a review for "Book One" with rating 3 and body "It was ok."
     When I visit the book show page for "Book One"
     Then I should see 3 stars for my review
+    And I update my review body to "" and rating to 3
+    And I click "Update Review"
+    Then I should see "There were some problems with your submission:"
+    And I should see "Body can't be blank"
     And I update my review body to "Actually, I loved it!" and rating to 5
     And I click "Update Review"
     Then I should see "Review was successfully updated."

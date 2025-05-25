@@ -17,7 +17,7 @@ When("I visit the book show page for {string}") do |book_title|
   visit book_path(book)
 end
 
-When("I update my review body to {string} and rating to {int}") do |body, rating|
+When("I enter a review with body {string} and rating {int}") do |body, rating|
   fill_in "Your Review", with: body
   select rating.to_s, from: "Rating (1-5)"
 end

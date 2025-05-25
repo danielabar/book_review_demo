@@ -19,7 +19,7 @@
 
     <%= form_with(model: [@book, @review], url: @user_review ? book_review_path(@book, @user_review) : book_reviews_path(@book), method: @user_review ? :patch : :post, local: true) do |form| %>
       <% if @review.errors.any? %>
-        <div class="mb-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded">
+        <div class="mb-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded" data-testid="form-validation-errors">
           <h3 class="font-semibold">There were some problems with your submission:</h3>
           <ul class="mt-2 list-disc list-inside">
             <% @review.errors.full_messages.each do |msg| %>

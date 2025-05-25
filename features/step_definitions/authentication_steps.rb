@@ -62,7 +62,3 @@ end
 Then("I should be on the registration page") do
   expect(current_path).to eq(new_user_registration_path)
 end
-
-Then("I should be on the home page") do
-  expect(current_path).to eq(root_path)
-end

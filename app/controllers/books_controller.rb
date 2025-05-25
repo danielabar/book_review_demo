@@ -13,7 +13,6 @@ class BooksController < ApplicationController
     context = BookShowContextBuilder.new(book: @book, user: current_user)
     @user_review = context.user_review
     @review = context.review
-    @other_reviews = context.other_reviews
     @reviews_to_show = context.reviews_to_show
   end
 end

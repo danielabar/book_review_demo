@@ -35,7 +35,6 @@ class ReviewsController < ApplicationController
       context = BookShowContextBuilder.new(book: @book, user: current_user)
       @user_review = context.user_review
       @review = @review # keep the invalid review for error display
-      @other_reviews = context.other_reviews
       @reviews_to_show = context.reviews_to_show
       render "books/show", status: :unprocessable_entity
     end

@@ -1,13 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
-  # FIXME: create and update methods - if theres a validation error, the page will not show the reviews
-  # Need to extract this logic from books controller show method to somewhere common like a helper or service:
-  # @reviews_to_show = []
-  # @reviews_to_show << @user_review if @user_review
-  # @reviews_to_show += @other_reviews.to_a if @other_reviews
-
-  # FIXME: The book show view refers to `@user_review` not `@review`
 
   def create
     @book = Book.find(params[:book_id])

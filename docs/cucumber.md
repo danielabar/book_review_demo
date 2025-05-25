@@ -11,7 +11,7 @@
   - [References](#references)
   - [Agentic](#agentic)
   - [Brainstorming](#brainstorming)
-    - [Review Management Edge Cases](#review-management-edge-cases)
+    - [WIP Review Management Edge Cases](#wip-review-management-edge-cases)
     - [User Permissions/Authorization](#user-permissionsauthorization)
     - [Navigation](#navigation)
     - [Logout Functionality](#logout-functionality)
@@ -137,7 +137,7 @@ Here is what can be done with this app:
 
 ## Brainstorming
 
-### Review Management Edge Cases
+### WIP Review Management Edge Cases
 - Attempt to submit a review with invalid data (blank body, rating outside range)
 - Attempt to submit a second review for the same book (UI doesn't even allow this, maybe belongs as model test)
 - Navigating away from review form and returning (data preservation)

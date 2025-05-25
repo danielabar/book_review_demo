@@ -17,8 +17,11 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to @book, notice: "Review was successfully created."
     else
-      # don't think this instance var is needed, but we do need others
-      @reviews = @book.reviews.order(created_at: :desc) # to re-render the review list
+      context = BookShowContextBuilder.new(book: @book, user: current_user)
+      @user_review = context.user_review
+      @review = @review # keep the invalid review for error display
+      @other_reviews = context.other_reviews
+      @reviews_to_show = context.reviews_to_show
       render "books/show", status: :unprocessable_entity
     end
   end
@@ -29,9 +32,11 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to @book, notice: "Review was successfully updated."
     else
-      # don't think these instance vars are needed, but we do need others
-      @user_review = @review
-      @other_reviews = @book.reviews.includes(:user).where.not(user: current_user).order(created_at: :desc)
+      context = BookShowContextBuilder.new(book: @book, user: current_user)
+      @user_review = context.user_review
+      @review = @review # keep the invalid review for error display
+      @other_reviews = context.other_reviews
+      @reviews_to_show = context.reviews_to_show
       render "books/show", status: :unprocessable_entity
     end
   end

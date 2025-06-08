@@ -1,15 +1,15 @@
 Given("the following reviews exist:") do |table|
   table.hashes.each do |row|
     book = Book.find_by(title: row["Book"])
-    user = User.find_by(email: row["User Email"]) || FactoryBot.create(:user, email: row["User Email"])
-    FactoryBot.create(:review, book: book, user: user, rating: row["Rating"], body: row["Body"])
+    user = User.find_by(email: row["User Email"]) || create(:user, email: row["User Email"])
+    create(:review, book: book, user: user, rating: row["Rating"], body: row["Body"])
   end
 end
 
 Given("I have left a review for {string} with rating {int} and body {string}") do |book_title, rating, body|
   book = Book.find_by(title: book_title)
   user = User.find_by(email: "user1@example.com")
-  FactoryBot.create(:review, book: book, user: user, rating: rating, body: body)
+  create(:review, book: book, user: user, rating: rating, body: body)
 end
 
 When("I visit the book show page for {string}") do |book_title|

@@ -2,17 +2,17 @@
 # This avoids navigating to the login or registration page and filling in forms, which is much slower.
 # Using Warden's test mode is the recommended approach for feature specs that require a signed-in user.
 Given("I am signed in as {string}") do |email|
-  user = User.find_by(email: email) || FactoryBot.create(:user, email: email)
+  user = User.find_by(email: email) || create(:user, email: email)
   login_as(user, scope: :user)
 end
 
 Given("a user exists with email {string} and password {string}") do |email, password|
-  FactoryBot.create(:user, email: email, password: password)
+  create(:user, email: email, password: password)
 end
 
 Given('users exist:') do |table|
   table.hashes.each do |row|
-    FactoryBot.create(:user, email: row['Email'], password: row['Password'])
+    create(:user, email: row['Email'], password: row['Password'])
   end
 end
 

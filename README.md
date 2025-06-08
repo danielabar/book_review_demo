@@ -33,12 +33,11 @@ This is a demo Book Review application built with Ruby on Rails. It serves as a 
 
 ## Running Tests
 
-WIP
+This project is focused on Cucumber feature testing:
 
-- **Feature tests (Cucumber):**
-  ```sh
-  bundle exec cucumber
-  ```
+```sh
+bundle exec cucumber
+```
 
 ## Database
 

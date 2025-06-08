@@ -83,15 +83,56 @@ Capybara.default_max_wait_time = 5
 
 ### Database Cleaner
 
-TBD
+Add the following file `features/support/database_cleaner.rb`:
+
+```ruby
+# Custom Database Cleaner configuration for Cucumber.
+#
+# We use the :truncation strategy for all scenarios because Capybara JS drivers (like Cuprite)
+# run the app and test code in separate processes, so transactional cleaning does not work.
+# This ensures the test database is cleaned between scenarios, preventing leftover data.
+
+DatabaseCleaner.strategy = :truncation
+```
 
 ### Factory Bot
 
-TBD
+Add the following file `features/support/factory_bot.rb`:
+
+```ruby
+# This file integrates FactoryBot's syntax methods into Cucumber's World.
+# By including `World(FactoryBot::Syntax::Methods)`, we make FactoryBot's DSL methods
+# (such as `create`, `build`, `attributes_for`, etc.) available directly in our step definitions.
+# This means you can write `create(:user)` instead of `FactoryBot.create(:user)` in your
+# `xxx_steps.rb` files. This improves readability and keeps your step definitions concise.
+#
+# What is `World`?
+# `World` is a method provided by the Cucumber gem. It allows you to add modules or helper methods
+# to the context in which your step definitions run. By passing a module to `World`, all its methods
+# become available as if they were defined in every step definition file. This is how we make FactoryBot's
+# methods available everywhere in our Cucumber tests.
+World(FactoryBot::Syntax::Methods)
+```
 
 ### Warden/Devise
 
-TBD
+Add the following file `features/support/warden.rb`:
+
+```ruby
+# Sets up Warden test helpers for Cucumber feature specs in a Rails app using Devise.
+# Devise uses Warden for authentication. Logging in via the UI in every test is slow.
+# Warden test helpers let us log in users directly in tests (e.g., login_as(user)).
+# This speeds up tests and avoids repetitive UI steps.
+#
+# Enable Warden's test mode so we can control authentication in tests.
+Warden.test_mode!
+
+# Make Warden test helper methods (like login_as) available in all steps.
+World(Warden::Test::Helpers)
+
+# Reset Warden's test state after each scenario to prevent state leakage.
+After { Warden.test_reset! }
+```
 
 ### Silence Publish Message
 

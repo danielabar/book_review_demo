@@ -1,6 +1,6 @@
 Given("the following books exist:") do |table|
   table.hashes.each do |row|
-    FactoryBot.create(:book, title: row["Title"], author: row["Author"], published_year: row["Published Year"])
+    create(:book, title: row["Title"], author: row["Author"], published_year: row["Published Year"])
   end
 end
 

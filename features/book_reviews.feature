@@ -40,7 +40,7 @@ Feature: Book reviews
     And I should see 5 stars for my review
 
   Scenario: User edits their review
-    Given I have left a review for "Book One" with rating 3 and body "It was ok."
+    Given User "user1@example.com" has left a review for "Book One" with rating 3 and body "It was ok."
     When I visit the book show page for "Book One"
     Then I should see 3 stars for my review
     And I enter a review with body "" and rating 3
@@ -55,7 +55,7 @@ Feature: Book reviews
     And I should see 5 stars for my review
 
   Scenario: User deletes their review
-    Given I have left a review for "Book One" with rating 3 and body "It was ok."
+    Given User "user1@example.com" has left a review for "Book One" with rating 3 and body "It was ok."
     When I visit the book show page for "Book One"
     And I click "Delete" on my review and confirm
     Then I should see "Review was successfully deleted."

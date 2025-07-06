@@ -6,9 +6,15 @@ Given("the following reviews exist:") do |table|
   end
 end
 
-Given("I have left a review for {string} with rating {int} and body {string}") do |book_title, rating, body|
+# Given("I have left a review for {string} with rating {int} and body {string}") do |book_title, rating, body|
+#   book = Book.find_by(title: book_title)
+#   user = User.find_by(email: "user1@example.com")
+#   create(:review, book: book, user: user, rating: rating, body: body)
+# end
+
+Given("User {string} has left a review for {string} with rating {int} and body {string}") do |email, book_title, rating, body|
   book = Book.find_by(title: book_title)
-  user = User.find_by(email: "user1@example.com")
+  user = User.find_by(email: email)
   create(:review, book: book, user: user, rating: rating, body: body)
 end
 

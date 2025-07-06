@@ -29,10 +29,7 @@ When("I click {string} on my review and confirm") do |button|
 end
 
 Then("I should see {string} in my review") do |text|
-  # Find the review item where the author is 'You'
-  my_review = all('[data-testid="review-item"]').find do |item|
-    item.find('[data-testid="review-author"]').text == "You"
-  end
+  my_review = find_my_review
   expect(my_review).not_to be_nil
   expect(my_review).to have_content(text)
 end
@@ -44,10 +41,7 @@ Then("I should not see {string} in the reviews list") do |text|
 end
 
 Then("I should see {int} stars for my review") do |count|
-  # Find the first review item where the author is 'You'
-  my_review = all('[data-testid="review-item"]').find do |item|
-    item.find('[data-testid="review-author"]').text == "You"
-  end
+  my_review = find_my_review
   expect(my_review).not_to be_nil
   expect(my_review.find('[data-testid="review-rating"]').all('svg').size).to eq(count)
 end

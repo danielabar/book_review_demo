@@ -1,8 +1,9 @@
-# Take a screenshot on failure after each scenario
 After do |scenario|
   if scenario.failed?
-    path = "html-report/#{scenario.__id__}.png"
+    feature = File.basename(scenario.location.file, ".feature")
+    scenario_name = scenario.name.gsub(/\W+/, "_")
+    path = "html-report/#{feature}_#{scenario_name}.png"
     page.save_screenshot(path)
-    attach(path, 'image/png')
+    attach(path, "image/png")
   end
 end

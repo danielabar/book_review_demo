@@ -16,7 +16,7 @@ Feature: Book reviews
 
   Scenario: User sees book details and reviews
     When I visit the book show page for "Book One"
-    Then I should see the book title, author, and published year for "Book One INTENTIONAL FAILURE"
+    Then I should see the book title, author, and published year for "Book One DOES NOT EXIST"
     And I should see the review for "user2@example.com" with body "Good read." and 4 stars
     And I should see a submit review button
 

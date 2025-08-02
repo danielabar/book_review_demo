@@ -24,6 +24,9 @@ jobs:
       - name: Prepare test database
         run: bin/rails db:test:prepare
 
+      - name: Precompile assets
+        run: bin/rails assets:precompile
+
       - name: Run Cucumber features
         env:
           RAILS_ENV: test

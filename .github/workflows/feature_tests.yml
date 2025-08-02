@@ -34,5 +34,5 @@ jobs:
         if: failure()
         with:
           name: screenshots
-          path: tmp/screenshots
+          path: tmp/capybara/html-report
           if-no-files-found: ignore
